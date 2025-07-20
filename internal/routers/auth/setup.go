@@ -12,17 +12,23 @@ import (
 func Setup(globals *app.AppGlobals, router fiber.Router) error {
 	group := router.Group("/auth")
 
-	limit := limiter.New(limiter.Config{
+	limitMain := limiter.New(limiter.Config{
 		Storage:           storage.NewFromGlobals(globals, "limit-auth"),
 		LimiterMiddleware: limiter.SlidingWindow{},
 		Max:               20,
 		Expiration:        15 * time.Minute,
 	})
-	group.Use(limit)
+	group.Use(limitMain)
+	limitOTP := limiter.New(limiter.Config{
+		Storage:           storage.NewFromGlobals(globals, "limit-otp"),
+		LimiterMiddleware: limiter.FixedWindow{},
+		Max:               1,
+		Expiration:        2 * time.Minute,
+	})
 
-	group.Post("/request-otp", HandleRequestOTP)
-	group.Post("/login", HandleLogin)
-	group.Post("/logout", HandleLogout, auth.Middleware())
+	group.Post("/request-otp", HandleRequestOTP, limitOTP)
+	group.Post("/login", HandleLogin, limitMain)
+	group.Post("/logout", HandleLogout, limitMain, auth.Middleware())
 
 	return nil
 }
