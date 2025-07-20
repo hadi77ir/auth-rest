@@ -52,7 +52,7 @@ func (m *TokenManager) Validate(tokenStr string) (*TokenClaims, error) {
 		if token.Method.Alg() != m.signMethod.Alg() {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Method.Alg())
 		}
-		return m.cfg.Secret, nil
+		return []byte(m.cfg.Secret), nil
 	})
 	if err != nil {
 		return nil, err
