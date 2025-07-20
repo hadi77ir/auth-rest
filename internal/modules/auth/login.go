@@ -59,7 +59,7 @@ func VerifyOTP(usersRepo dal.UsersRepository, phone, otpCode string) (users.User
 	if err != nil {
 		return empty, err
 	}
-	if user.OTPCode != otpCode || user.OTPCodeExpires.After(time.Now()) {
+	if user.OTPCode != otpCode || user.OTPCodeExpires.Before(time.Now()) {
 		return empty, ErrInvalidOTP
 	}
 	user.OTPCodeExpires = time.Now().Add(-1 * time.Minute)
