@@ -66,7 +66,7 @@ func CreateUser(userRepo dal.UsersRepository, user UserModel) (UserModel, error)
 }
 
 func UpdateUser(userRepo dal.UsersRepository, user UserModel) error {
-	userSchema := &schema.User{Phone: user.Phone, Verified: user.Verified, Role: user.Role}
+	userSchema := &schema.User{Phone: user.Phone, Verified: user.Verified, Role: user.Role, Name: user.Name}
 	userSchema.ID = uint(user.ID)
 	return userRepo.Update(userSchema)
 }

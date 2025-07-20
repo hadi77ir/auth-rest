@@ -20,7 +20,7 @@ func (g *GormUsersRepository) Create(user *schema.User) error {
 }
 
 func (g *GormUsersRepository) Update(user *schema.User) error {
-	return g.db.Save(user).Error
+	return g.db.Updates(user).Error
 }
 
 func (g *GormUsersRepository) Delete(id uint) error {
