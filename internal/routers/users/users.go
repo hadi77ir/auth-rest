@@ -19,6 +19,7 @@ import (
 // @Tags         users
 // @Accept       json
 // @Produce      json
+// @Security     BearerToken
 // @Param        request body SelfUpdateRequest true "Self Update Request"
 // @Success      200  {object}  common.SuccessResponse
 // @Failure      401  {object}  common.ErrorResponse
@@ -52,6 +53,7 @@ func HandleSingleUpdateSelf(ctx fiber.Ctx) error {
 // @Description  Gets info for current user
 // @Tags         users
 // @Produce      json
+// @Security     BearerToken
 // @Success      200  {object}  UserResponse
 // @Failure      401  {object}  common.ErrorResponse
 // @Failure      500  {object}  common.ErrorResponse
@@ -67,6 +69,7 @@ func HandleSingleGetSelf(ctx fiber.Ctx) error {
 // @Description  Deletes given user from database
 // @Tags         users
 // @Produce      json
+// @Security     BearerToken
 // @Param		 id   path      int      true   "User ID"
 // @Success      200  {object}  common.SuccessResponse
 // @Failure      401  {object}  common.ErrorResponse
@@ -113,6 +116,7 @@ func HandleSingleDelete(ctx fiber.Ctx) error {
 // @Description  Updates given user info
 // @Tags         users
 // @Produce      json
+// @Security     BearerToken
 // @Param		 id      path      int               true   "User ID"
 // @Param        request body      UserUpdateRequest true   "User Update Request"
 // @Success      200  {object}  common.SuccessResponse
@@ -172,6 +176,7 @@ func HandleSingleUpdate(ctx fiber.Ctx) error {
 // @Description  Fetches given user's info
 // @Tags         users
 // @Produce      json
+// @Security     BearerToken
 // @Param		 id      path      int               true   "User ID"
 // @Success      200  {object}  UserResponse
 // @Failure      401  {object}  common.ErrorResponse
@@ -200,6 +205,7 @@ func HandleSingleGet(ctx fiber.Ctx) error {
 // @Description  Creates a new user
 // @Tags         users
 // @Produce      json
+// @Security     BearerToken
 // @Param        request body      UserCreateRequest true   "User Create Request"
 // @Success      200  {object}  UserCreateResponse
 // @Failure      401  {object}  common.ErrorResponse
@@ -252,6 +258,7 @@ func HandleCreate(ctx fiber.Ctx) error {
 // @Description  Lists all users from database
 // @Tags         users
 // @Produce      json
+// @Security     BearerToken
 // @Success      200  {object}  UsersResponse
 // @Failure      401  {object}  common.ErrorResponse
 // @Failure      500  {object}  common.ErrorResponse

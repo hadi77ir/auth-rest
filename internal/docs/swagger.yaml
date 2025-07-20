@@ -152,6 +152,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/common.ErrorResponse'
+      security:
+      - BearerToken: []
       summary: Logout
       tags:
       - auth
@@ -203,6 +205,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/common.ErrorResponse'
+      security:
+      - BearerToken: []
       summary: Get Current User
       tags:
       - users
@@ -232,6 +236,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/common.ErrorResponse'
+      security:
+      - BearerToken: []
       summary: Update Current User
       tags:
       - users
@@ -253,6 +259,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/common.ErrorResponse'
+      security:
+      - BearerToken: []
       summary: List Users
       tags:
       - users
@@ -280,6 +288,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/common.ErrorResponse'
+      security:
+      - BearerToken: []
       summary: Create User
       tags:
       - users
@@ -307,6 +317,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/common.ErrorResponse'
+      security:
+      - BearerToken: []
       summary: Delete User
       tags:
       - users
@@ -333,6 +345,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/common.ErrorResponse'
+      security:
+      - BearerToken: []
       summary: Get User
       tags:
       - users
@@ -365,6 +379,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/common.ErrorResponse'
+      security:
+      - BearerToken: []
       summary: Update User
       tags:
       - users

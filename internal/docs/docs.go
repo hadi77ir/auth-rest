@@ -63,6 +63,11 @@ const docTemplate = `{
         },
         "/auth/logout": {
             "post": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Revokes current access token",
                 "produces": [
                     "application/json"
@@ -141,6 +146,11 @@ const docTemplate = `{
         },
         "/user": {
             "get": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Gets info for current user",
                 "produces": [
                     "application/json"
@@ -171,6 +181,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Updates info for current user",
                 "consumes": [
                     "application/json"
@@ -217,6 +232,11 @@ const docTemplate = `{
         },
         "/users": {
             "get": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Lists all users from database",
                 "produces": [
                     "application/json"
@@ -247,6 +267,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Creates a new user",
                 "produces": [
                     "application/json"
@@ -290,6 +315,11 @@ const docTemplate = `{
         },
         "/users/{id}": {
             "get": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Fetches given user's info",
                 "produces": [
                     "application/json"
@@ -329,6 +359,11 @@ const docTemplate = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Updates given user info",
                 "produces": [
                     "application/json"
@@ -377,6 +412,11 @@ const docTemplate = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
                 "description": "Deletes given user from database",
                 "produces": [
                     "application/json"

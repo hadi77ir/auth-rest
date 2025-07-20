@@ -9,14 +9,15 @@ import (
 
 // HandleLogout is the logout handler
 //
-//	@Summary      Logout
-//	@Description  Revokes current access token
-//	@Tags         auth
-//	@Produce      json
-//	@Success      200  {object}  common.SuccessResponse
-//	@Failure      401  {object}  common.ErrorResponse
-//	@Failure      500  {object}  common.ErrorResponse
-//	@Router       /auth/logout [post]
+// @Summary      Logout
+// @Description  Revokes current access token
+// @Tags         auth
+// @Produce      json
+// @Security     BearerToken
+// @Success      200  {object}  common.SuccessResponse
+// @Failure      401  {object}  common.ErrorResponse
+// @Failure      500  {object}  common.ErrorResponse
+// @Router       /auth/logout [post]
 func HandleLogout(ctx fiber.Ctx) error {
 	manager := jwt.FromContext(ctx)
 	claims := auth.ClaimsFromContext(ctx)
