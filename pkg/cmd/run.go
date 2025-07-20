@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"auth-rest/internal/app"
+	"auth-rest/internal/modules/jwt"
 	"auth-rest/internal/modules/sms"
 	"auth-rest/internal/routers/errors"
 	"auth-rest/internal/setup"
@@ -33,6 +34,13 @@ func Run(context context.Context, globals *app.AppGlobals, runArgs RunArgs) erro
 	if err != nil {
 		return err
 	}
+	logger.Log(logging.DebugLevel, "done setting up storage")
+
+	err = jwt.Setup(globals)
+	if err != nil {
+		return err
+	}
+	logger.Log(logging.DebugLevel, "done setting up jwt manager")
 
 	server := fiber.New(fiber.Config{
 		AppName:      "auth-rest",
