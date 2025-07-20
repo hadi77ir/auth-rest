@@ -8,7 +8,7 @@ import (
 )
 
 func HandleError(c fiber.Ctx, err error) error {
-	if err != nil {
+	if err == nil {
 		return nil
 	}
 	var fiberError *fiber.Error
