@@ -37,7 +37,7 @@ func (m *TokenManager) Generate(subject string, expiration time.Time) (string, e
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 	})
-	tokenString, err := token.SignedString(m.cfg.Secret)
+	tokenString, err := token.SignedString([]byte(m.cfg.Secret))
 	if err != nil {
 		return "", err
 	}
