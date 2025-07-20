@@ -1,0 +1,15 @@
+# editor files
+.vscode/
+.idea/
+
+# git
+.git/
+.githooks/
+.gitignore
+
+# generated
+bin/
+out/
+
+# docs
+**/*.md

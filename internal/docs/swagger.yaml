@@ -1,0 +1,341 @@
+basePath: /api/v1
+definitions:
+  auth.LoginInitRequest:
+    properties:
+      phone:
+        example: "09123456789"
+        type: string
+    type: object
+  auth.LoginRequest:
+    properties:
+      otp:
+        example: "123456"
+        type: string
+      phone:
+        example: "09123456789"
+        type: string
+    type: object
+  auth.LoginResponse:
+    properties:
+      token:
+        example: xxxxx.yyyyy.zzzzz
+        type: string
+    type: object
+  common.ErrorResponse:
+    properties:
+      error:
+        example: this is an example error
+        type: string
+    type: object
+  common.SuccessResponse:
+    properties:
+      success:
+        example: true
+        type: boolean
+    type: object
+  users.SelfUpdateRequest:
+    properties:
+      name:
+        example: Admin
+        type: string
+    type: object
+  users.UserCreateRequest:
+    properties:
+      name:
+        example: Admin
+        type: string
+      phone:
+        example: "09123456789"
+        type: string
+      role:
+        example: admin
+        type: string
+    type: object
+  users.UserCreateResponse:
+    properties:
+      id:
+        example: 1
+        type: integer
+      success:
+        example: true
+        type: boolean
+    type: object
+  users.UserResponse:
+    properties:
+      created_at:
+        example: "2020-09-20T14:00:00+09:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      name:
+        example: Admin
+        type: string
+      phone:
+        example: "09123456789"
+        type: string
+      role:
+        example: admin
+        type: string
+      updated_at:
+        example: "2020-09-20T14:00:00+09:00"
+        type: string
+    type: object
+  users.UserUpdateRequest:
+    properties:
+      name:
+        example: Admin
+        type: string
+      role:
+        example: admin
+        type: string
+    type: object
+  users.UsersResponse:
+    properties:
+      users:
+        items:
+          $ref: '#/definitions/users.UserResponse'
+        type: array
+    type: object
+host: localhost:4000
+info:
+  contact: {}
+  description: Simple Auth Server
+  title: Auth-Rest
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Returns an access token upon success
+      parameters:
+      - description: Login request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.LoginResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: Login by OTP
+      tags:
+      - auth
+  /auth/logout:
+    post:
+      description: Revokes current access token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: Logout
+      tags:
+      - auth
+  /user:
+    get:
+      description: Gets info for current user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.UserResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: Get Current User
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      description: Updates info for current user
+      parameters:
+      - description: Self Update Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/users.SelfUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: Update Current User
+      tags:
+      - users
+  /users:
+    get:
+      description: Lists all users from database
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.UsersResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: List Users
+      tags:
+      - users
+    post:
+      description: Creates a new user
+      parameters:
+      - description: User Create Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/users.UserCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.UserCreateResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: Create User
+      tags:
+      - users
+  /users/{id}:
+    delete:
+      description: Deletes given user from database
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: Delete User
+      tags:
+      - users
+    get:
+      description: Fetches given user's info
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.UserResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: Get User
+      tags:
+      - users
+    post:
+      description: Updates given user info
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: User Update Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/users.UserUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: Update User
+      tags:
+      - users
+swagger: "2.0"

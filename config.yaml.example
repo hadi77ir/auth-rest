@@ -1,0 +1,9 @@
+database:
+  type: sqlite
+  dsn: db.sqlite3
+jwt:
+  algorithm: hs256
+  secret: secret-key
+  issuer: auth-rest
+log_level: info
+sms_provider: log
