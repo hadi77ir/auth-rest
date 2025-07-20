@@ -155,6 +155,36 @@ paths:
       summary: Logout
       tags:
       - auth
+  /auth/request-otp:
+    post:
+      consumes:
+      - application/json
+      description: Sends an SMS containing OTP
+      parameters:
+      - description: Login init request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LoginInitRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/common.ErrorResponse'
+      summary: Request OTP
+      tags:
+      - auth
   /user:
     get:
       description: Gets info for current user
