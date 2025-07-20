@@ -29,7 +29,7 @@ func (g *GormUsersRepository) Delete(id uint) error {
 
 func (g *GormUsersRepository) ById(u uint) (*schema.User, error) {
 	var user schema.User
-	tx := g.db.Where("id = ?", u).Take(user)
+	tx := g.db.Where("id = ?", u).Take(&user)
 	if tx.Error != nil {
 		return nil, convertErr(tx.Error)
 	}
@@ -38,7 +38,7 @@ func (g *GormUsersRepository) ById(u uint) (*schema.User, error) {
 
 func (g *GormUsersRepository) ByPhoneNumber(phone string) (*schema.User, error) {
 	var user schema.User
-	tx := g.db.Where("phone = ?", phone).Take(user)
+	tx := g.db.Where("phone = ?", phone).Take(&user)
 	if tx.Error != nil {
 		return nil, convertErr(tx.Error)
 	}
