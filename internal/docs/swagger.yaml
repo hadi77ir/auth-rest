@@ -384,4 +384,9 @@ paths:
       summary: Update User
       tags:
       - users
+securityDefinitions:
+  BearerToken:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"

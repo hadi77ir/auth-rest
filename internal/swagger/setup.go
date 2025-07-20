@@ -14,7 +14,7 @@ import (
 //	@host		localhost:4000
 //	@BasePath	/api/v1
 
-//	@securityDefinitions.bearer	BearerToken
+//	@securityDefinitions.apiKey	BearerToken
 //	@in							header
 //	@name						Authorization
 
