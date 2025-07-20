@@ -24,7 +24,7 @@ import (
 // @Success      200  {object}  common.SuccessResponse
 // @Failure      401  {object}  common.ErrorResponse
 // @Failure      500  {object}  common.ErrorResponse
-// @Router       /auth/login [post]
+// @Router       /auth/request-otp [post]
 func HandleRequestOTP(ctx fiber.Ctx) error {
 	repos := dal.FromContext(ctx)
 	var request LoginRequest
