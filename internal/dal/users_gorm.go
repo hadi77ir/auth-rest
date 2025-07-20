@@ -11,7 +11,7 @@ type GormUsersRepository struct {
 
 func (g *GormUsersRepository) All() ([]*schema.User, error) {
 	var users []*schema.User
-	tx := g.db.Find(users)
+	tx := g.db.Find(&users)
 	return users, convertErr(tx.Error)
 }
 
