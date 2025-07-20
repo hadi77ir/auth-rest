@@ -2,6 +2,10 @@
 # Project #
 ###########
 
+# actual config and database
+db.sqlite3
+config.yaml
+
 # make output
 bin/
 out/
