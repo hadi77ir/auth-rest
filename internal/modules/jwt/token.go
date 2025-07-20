@@ -94,11 +94,15 @@ func getRevokedTokenKey(tokenId string) string {
 
 func NewTokenManager(cfg *config.JWTConfig, storage fiber.Storage) (*TokenManager, error) {
 	if cfg == nil {
-		return nil, errors.New("config is nil")
+		return nil, errors.New("jwt config is nil")
+	}
+	signMethod := jwt.GetSigningMethod(cfg.Algorithm)
+	if signMethod == nil {
+		return nil, errors.New("unknown jwt signing method")
 	}
 	return &TokenManager{
 		cfg:        cfg,
-		signMethod: jwt.GetSigningMethod(cfg.Algorithm),
+		signMethod: signMethod,
 		storage:    storage,
 	}, nil
 }
