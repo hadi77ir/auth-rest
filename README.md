@@ -39,7 +39,7 @@ docker compose up
 ```
 
 ## API Documentation
-After running the server, Swagger will be accessible at "http://127.0.0.1:4000/swagger/". Also, you can find the
+After running the server, Swagger will be accessible at "http://localhost:4000/swagger/". Also, you can find the
 OpenAPI spec in [here](internal/docs/swagger.yaml).
 
 ## SMS Providers
